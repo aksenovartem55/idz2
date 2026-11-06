@@ -1,4 +1,4 @@
-package org.example;
+package org.example.finance;
 
 public class FinanceReport {
     private Payment[] payments;
