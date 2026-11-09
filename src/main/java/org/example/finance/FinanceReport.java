@@ -1,14 +1,17 @@
 package org.example.finance;
 
+import java.util.Objects;
+
 public class FinanceReport {
-    private Payment[] payments;
-    private String author;
-    private int day;
-    private int month;
-    private int year;
+    private final Payment[] payments;
+    private final String author;
+    private final int day;
+    private final int month;
+    private final int year;
 
     public FinanceReport(Payment[] payments, String author, int day, int month, int year) {
-        this.payments = payments;
+        Objects.requireNonNull(payments, "Массив платежей не может быть null");
+        this.payments = payments.clone();
         this.author = author;
         this.day = day;
         this.month = month;
@@ -16,6 +19,7 @@ public class FinanceReport {
     }
 
     public FinanceReport(FinanceReport other) {
+        Objects.requireNonNull(other, "Копируемый отчет не может быть null");
         this.author = other.author;
         this.day = other.day;
         this.month = other.month;
@@ -56,17 +60,14 @@ public class FinanceReport {
         return year;
     }
 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("[Автор: %s, дата: %02d.%02d.%d, Платежи: [\n",
                 author, day, month, year));
-        for (int i = 0; i < payments.length; i++) {
-            Payment p = payments[i];
+        for (Payment p : payments) {
             if (p != null) {
-                int rubles = p.getAmount() / 100;
-                int kopecks = p.getAmount() % 100;
-                builder.append(String.format("Плательщик: %s, дата: %02d.%02d.%d сумма: %d руб. %02d коп.\n",
-                        p.getFullName(), p.getDay(), p.getMonth(), p.getYear(), rubles, kopecks));
+                builder.append(p).append('\n');
             }
         }
         builder.append("]]");

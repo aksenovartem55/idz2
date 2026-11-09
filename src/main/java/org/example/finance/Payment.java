@@ -18,11 +18,7 @@ public class Payment {
     }
 
     public Payment(Payment other) {
-        this.fullName = other.fullName;
-        this.day = other.day;
-        this.month = other.month;
-        this.year = other.year;
-        this.amount = other.amount;
+        this(other.fullName, other.day, other.month, other.year, other.amount);
     }
 
     public String getFullName() {
@@ -65,6 +61,7 @@ public class Payment {
         this.amount = amount;
     }
 
+    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
@@ -80,14 +77,16 @@ public class Payment {
                 Objects.equals(fullName, payment.fullName);
     }
 
+    @Override
     public int hashCode() {
         return Objects.hash(fullName, day, month, year, amount);
     }
 
+    @Override
     public String toString() {
-        int rubles = amount / 100;
-        int kopecks = amount % 100;
-        return String.format("Плательщик: %s, дата: %02d.%02d.%d сумма: %d руб. %02d коп.",
-                fullName, day, month, year, rubles, kopecks);
+        long abs = Math.abs((long) amount);
+        String sign = amount < 0 ? "-" : "";
+        return String.format("Плательщик: %s, дата: %02d.%02d.%d сумма: %s%d руб. %02d коп.",
+                fullName, day, month, year, sign, abs / 100, abs % 100);
     }
 }

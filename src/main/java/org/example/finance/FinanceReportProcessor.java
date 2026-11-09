@@ -17,7 +17,7 @@ public class FinanceReportProcessor {
 
         for (int i = 0; i < report.getPaymentsCount(); i++) {
             Payment p = report.getPayment(i);
-            if (p != null && !p.getFullName().isEmpty()) {
+            if (p != null && !p.getFullName().trim().isEmpty()) {
                 char firstChar = Character.toLowerCase(p.getFullName().trim().charAt(0));
                 if (firstChar == target) {
                     count++;
@@ -29,7 +29,7 @@ public class FinanceReportProcessor {
         int index = 0;
         for (int i = 0; i < report.getPaymentsCount(); i++) {
             Payment p = report.getPayment(i);
-            if (p != null && !p.getFullName().isEmpty()) {
+            if (p != null && !p.getFullName().trim().isEmpty()) {
                 char firstChar = Character.toLowerCase(p.getFullName().trim().charAt(0));
                 if (firstChar == target) {
                     filtered[index] = new Payment(p);

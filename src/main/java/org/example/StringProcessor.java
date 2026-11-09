@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 public class StringProcessor {
 
     public static String repeat(String text, int count) {
+        if (text == null) {
+            throw new IllegalArgumentException("Строка не может быть null");
+        }
         if (count < 0) {
             throw new IllegalArgumentException("Количество копий не может быть отрицательным");
         }

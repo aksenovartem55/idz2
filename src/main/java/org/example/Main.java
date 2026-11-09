@@ -30,11 +30,11 @@ public class Main {
         scanner.nextLine();
 
         Payment[] samplePayments = {
-                new Payment("Иванов Иван Иванович", 10, 5, 2026, 15050),
-                new Payment("Петров Петр Петрович", 10, 5, 2026, 320000),
-                new Payment("Ильин Илья Ильич", 15, 6, 2026, 4500)
+                new Payment("Ашаев Игорь Викторович", 10, 5, 2026, 15050),
+                new Payment("Березин Андрей Андреевич", 10, 5, 2026, 320000),
+                new Payment("Ашаев Игорь Викторович", 15, 6, 2026, 4500)
         };
-        FinanceReport sampleReport = new FinanceReport(samplePayments, "Сидоров С.С.", 20, 6, 2026);
+        FinanceReport sampleReport = new FinanceReport(samplePayments, "Березин А.А.", 20, 6, 2026);
 
         switch (choice) {
             case 1:
@@ -80,8 +80,8 @@ public class Main {
                 break;
 
             case 7:
-                Payment p1 = new Payment("Иванов Иван Иванович", 10, 5, 2026, 15050);
-                Payment p2 = new Payment("Иванов Иван Иванович", 10, 5, 2026, 15050);
+                Payment p1 = new Payment("Ашаев Игорь Викторович", 10, 5, 2026, 15050);
+                Payment p2 = new Payment("Ашаев Игорь Викторович", 10, 5, 2026, 15050);
                 System.out.println("Платеж 1: " + p1);
                 System.out.println("Платеж 2: " + p2);
                 System.out.println("Равны ли платежи? " + p1.equals(p2));
@@ -103,8 +103,8 @@ public class Main {
                 break;
 
             case 11:
-                System.out.println("Платежи на букву 'И':\n" +
-                        FinanceReportProcessor.getPaymentsByPrefix(sampleReport, 'И'));
+                System.out.println("Платежи на букву 'А':\n" +
+                        FinanceReportProcessor.getPaymentsByPrefix(sampleReport, 'А'));
                 System.out.println("\nПлатежи меньше 20000 коп. (200 руб.):\n" +
                         FinanceReportProcessor.getPaymentsSmallerThan(sampleReport, 20000));
                 break;
@@ -119,9 +119,9 @@ public class Main {
             case 13:
                 double[] inc1 = {1200, 2300, 24000, 25000, 0, 0, 0, 0, 0, 0, 0, 0};
                 double[] inc2 = {0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-                IncomeStatement st1 = new IncomeStatement(2020, "Иванов И.И.", "Казино «Поле чудес»", inc1);
-                IncomeStatement st2 = new IncomeStatement(2020, "Иванов И.И.", "ООО «Рога и копыта»", inc2);
-                TaxDeclaration decl = new TaxDeclaration(2020, "Иванов И.И.", st1, st2);
+                IncomeStatement st1 = new IncomeStatement(2020, "Ашаев И.В.", "Казино «Поле чудес»", inc1);
+                IncomeStatement st2 = new IncomeStatement(2020, "Ашаев И.В.", "ООО «Рога и копыта»", inc2);
+                TaxDeclaration decl = new TaxDeclaration(2020, "Ашаев И.В.", st1, st2);
 
                 System.out.println("Доходы по месяцам: " + Arrays.toString(decl.getMonthlyIncomes()));
                 System.out.println("Суммарный доход с начала года: " + Arrays.toString(decl.getCumulativeIncomes()));
